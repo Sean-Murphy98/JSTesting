@@ -1,4 +1,4 @@
-import { capitalize, reverseString } from "./testPractice";
+import { capitalize, reverseString, calculator } from "./testPractice";
 
 //Capitalize testing
 test("Checks uncapitalized word", () => {
@@ -42,6 +42,25 @@ test("Reverses short string", () => {
   expect(reverseString("abc")).toBe("cba");
 });
 
-test("Checks reversing null error", () => {
+test("Checks reversing type error", () => {
   expect(() => reverseString(1)).toThrow(TypeError);
+});
+
+//Calculator testing
+const calc = new calculator();
+
+test("Adding two integers", () => {
+  expect(calc.add(1, 2)).toBe(3);
+});
+test("Adding two floats", () => {
+  expect(calc.add(1.4, 2.6)).toBeCloseTo(4.0);
+});
+test("Adding a float to an integer", () => {
+  expect(calc.add(1.4, 2)).toBeCloseTo(3.4);
+});
+test("null entered in place of number, addition", () => {
+  expect(calc.add(null, 3)).toBe("");
+});
+test("Adding an integer and a not number", () => {
+  expect(() => calc.add("burgers and fries", 2)).toThrow(TypeError);
 });
