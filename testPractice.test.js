@@ -1,4 +1,9 @@
-import { capitalize, reverseString, calculator } from "./testPractice";
+import {
+  capitalize,
+  reverseString,
+  calculator,
+  caesarCipher,
+} from "./testPractice";
 
 //Capitalize testing
 test("Checks uncapitalized word", () => {
@@ -48,7 +53,7 @@ test("Checks reversing type error", () => {
 
 //Calculator testing
 const calc = new calculator();
-
+//addition
 test("Adding two integers", () => {
   expect(calc.add(1, 2)).toBe(3);
 });
@@ -61,6 +66,73 @@ test("Adding a float to an integer", () => {
 test("null entered in place of number, addition", () => {
   expect(calc.add(null, 3)).toBe("");
 });
-test("Adding an integer and a not number", () => {
+test("Adding with a NaN", () => {
   expect(() => calc.add("burgers and fries", 2)).toThrow(TypeError);
 });
+//subtraction
+test("Subtracting two integers", () => {
+  expect(calc.subtract(1, 2)).toBe(-1);
+});
+test("Subtracting two floats", () => {
+  expect(calc.subtract(1.4, 2.6)).toBeCloseTo(-1.2);
+});
+test("Subtracting an integer from a float", () => {
+  expect(calc.subtract(1.4, 2)).toBeCloseTo(-0.6);
+});
+test("null entered in place of number, subtraction", () => {
+  expect(calc.subtract(null, 3)).toBe("");
+});
+test("Subtraction with a NaN", () => {
+  expect(() => calc.subtract("burgers and fries", 2)).toThrow(TypeError);
+});
+//Division
+test("Dividing two integers", () => {
+  expect(calc.divide(1, 2)).toBe(0.5);
+});
+test("Dividing two floats", () => {
+  expect(calc.divide(1.4, 2.6)).toBeCloseTo(0.53846);
+});
+test("Dividing a float by an integer", () => {
+  expect(calc.divide(1.4, 2)).toBeCloseTo(0.7);
+});
+test("null entered in place of number, division", () => {
+  expect(calc.divide(null, 3)).toBe("");
+});
+test("Division with a NaN", () => {
+  expect(() => calc.divide("burgers and fries", 2)).toThrow(TypeError);
+});
+//Multiplication
+test("Multiplying two integers", () => {
+  expect(calc.multiply(2, 2)).toBe(4);
+});
+test("Multiplying two floats", () => {
+  expect(calc.multiply(1.4, 2.6)).toBeCloseTo(3.64);
+});
+test("Multiplying a float by an integer", () => {
+  expect(calc.multiply(1.4, 2)).toBeCloseTo(2.8);
+});
+test("null entered in place of number, multiplication", () => {
+  expect(calc.multiply(null, 3)).toBe("");
+});
+test("Division with a NaN", () => {
+  expect(() => calc.multiply("burgers and fries", 2)).toThrow(TypeError);
+});
+
+//caesarCipher testing
+test("Basic test", () => {
+  expect(caesarCipher("abc", 2)).toBe("cde");
+});
+test("Wrapping test", () => {
+  expect(caesarCipher("xyz", 3)).toBe("abc");
+});
+test("Case preservation", () => {
+  expect(caesarCipher("HeLLo", 3)).toBe("KhOOr");
+});
+test("Punctuation test", () => {
+  expect(caesarCipher("Hello, World!", 3)).toBe("Khoor, Zruog!");
+});
+test("Empty string", () => {
+  expect(caesarCipher("", 3)).toBe("");
+});
+
+//analyzeArray testing
