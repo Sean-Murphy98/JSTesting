@@ -63,3 +63,17 @@ export function caesarCipher(str, shift) {
   const shiftedStr = newArray.join("");
   return shiftedStr;
 }
+
+export function analyzeArray(arr) {
+  const sum = arr.reduce(
+    (accumulator, currentValue) => accumulator + currentValue,
+    0
+  );
+  const average = sum / arr.length;
+  return {
+    average: average,
+    min: Math.min(...arr),
+    max: Math.max(...arr),
+    length: arr.length,
+  };
+}
